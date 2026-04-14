@@ -30,7 +30,7 @@ jobs:
             - name: SSH to Linux and run container
               uses: appleboy/ssh-action@v1
               with:
-                host: ${{secrets.SSH_USERNAME}}
+                host: ${{secrets.HOST}}
                 key: ${{secrets.PRIVATE_KEY}}
                 script: |
                     docker rm -f portofolio || echo "Container not found, skipping removal."
