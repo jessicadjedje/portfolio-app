@@ -23,3 +23,5 @@ jobs:
                docker push ${{secrets.DOCKER_USERNAME}}/ciportofolio
 
 
+    deploy:
+        needs;
