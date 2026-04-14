@@ -24,4 +24,15 @@ jobs:
 
 
     deploy:
-        needs;
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: SSH to Linux and run container
+              uses: appleboy/ssh-action@v1
+              with:
+                host: ${{secrets.SSH_USERNAME}}
+                key: ${{secrets.PRIVATE_KEY}}
+                script: |
+                    docker rm -f portofolio || echo "Container not found, skipping removal."
+                    docker run -d --name portofolio -p 8090:80 ${{secrets.DOCKER_USERNAME}}/ciportofolio
+                    ls
